@@ -1,5 +1,5 @@
 # SystemExtender
-Kernel-supported System Informer plugin.
+Kernel-supported System Informer plugin that adds cool features.
 
 ## Features
 - Always use kernel handles (to open process and threads)
