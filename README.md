@@ -35,7 +35,7 @@ We hook NtOpenProcess and NtOpenThread with MinHook and redirect them to our ioc
 Undocumented Nt stuff. You can find and change offsets for other versions of Windows. Current offsets are for Windows 11 24H2.
 
 ## Problems?
-Open an issue or contact me from Telegram. (@dev_vlltx)[t.me/dev_vlltx]
+Open an issue or contact me from Telegram. t.me/dev_vlltx
 
 ## Disclaimer
 I am not an UI dev, especially not a dialog developer. My UI is bad, but it does its job.
