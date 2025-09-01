@@ -5,7 +5,7 @@ PVOID RtlFindPattern(
   _In_ SIZE_T
   _In_ SourceLength,
   _In_ PVOID Pattern,
-  _In_SIZE_T PatternLength
+  _In_ SIZE_T PatternLength
 )
 {
 	SIZE_T Index;
