@@ -14,6 +14,8 @@ Kernel-supported System Informer plugin.
 - You need to build System Informer and set "EnableDefaultSafePlugins" to 0 from Advanced section. Beecause seems like System Informer doesn't like unsigned plugins.
 
 ## Show me how it looks
+Click on any process, go to Properties, go to Extended tab.
+
 ![UI](ss.png)
 
 ## Why?
