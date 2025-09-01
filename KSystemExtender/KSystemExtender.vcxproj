@@ -120,6 +120,7 @@
   <ItemGroup>
     <ClCompile Include="Comm.c" />
     <ClCompile Include="Driver.c" />
+    <ClCompile Include="Utils.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Kse.h" />
@@ -128,4 +129,5 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+
 </Project>
