@@ -14,7 +14,7 @@ NTSTATUS KseDispatchCreateClose(
 	PEPROCESS Requestor = IoGetRequestorProcess(Irp);
 
 	PUNICODE_STRING* ProcessName = (PUNICODE_STRING*)RVA(Requestor, EprocessSeAuditProcessCreateInfoOffset);
-	if (!RtlCompareMemory((*ProcessName)->Buffer, SystemInformerName.Buffer, SystemInformerName.Length) == SystemInformerName.Length) {
+	if (RtlFindPattern((*ProcessName)->Buffer, (*ProcessName)->MaximumLength, SystemInformerName.Buffer, SystemInformerName.Length) == SystemInformerName.Length) {
 		Irp->IoStatus.Status = STATUS_ACCESS_DENIED;
 		return STATUS_ACCESS_DENIED;
 	}
@@ -133,4 +133,5 @@ end:
 	Irp->IoStatus.Status = Status;
 	IoCompleteRequest(Irp, 0);
 	return Status;
+
 }
