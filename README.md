@@ -1,4 +1,4 @@
-# SystemExtender
+# System Extender
 Kernel-supported System Informer plugin that adds cool features.
 
 ## Features
