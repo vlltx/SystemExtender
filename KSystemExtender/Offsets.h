@@ -7,6 +7,8 @@ extern UINT64 EprocessSeAuditProcessCreateInfoOffset;
 extern UINT64 EprocessProtectionOffset;
 extern UINT64 EprocessMitigationFlagsOffset;
 extern UINT64 EprocessSignatureLevelOffset;
+extern UINT64 EprocessMitigationFlags2Offset;
+extern UINT64 EprocessMitigationFlags3Offset;
 
 EXTERN_C
 NTSYSCALLAPI

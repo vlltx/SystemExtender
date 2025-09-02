@@ -15,11 +15,10 @@ NTSTATUS KseDispatchDeviceControl(
 );
 
 PVOID RtlFindPattern(
-  _In_ PVOID Source,
-  _In_ SIZE_T
-  _In_ SourceLength,
-  _In_ PVOID Pattern,
-  _In_ SIZE_T PatternLength
+	_In_ PVOID Source,
+	_In_ SIZE_T SourceLength,
+	_In_ PVOID Pattern,
+	_In_ SIZE_T PatternLength
 );
 
 #define CTL_SET_PROTECTION CTL_CODE(FILE_DEVICE_UNKNOWN, 0x800, METHOD_BUFFERED, FILE_ANY_ACCESS)
@@ -121,9 +120,19 @@ typedef struct _KSE_SET_MITIGATION {
 			ULONG UserCetSetContextIpValidationRelaxedMode : 1;               //0x754
 		} MitigationFlags2Values;                                           //0x754
 	} u2;
+	union
+	{
+		ULONG MitigationFlags3;                                             //0x7d8
+		struct
+		{
+			ULONG RestrictCoreSharing : 1;                                    //0x7d8
+			ULONG DisallowFsctlSystemCalls : 1;                               //0x7d8
+			ULONG AuditDisallowFsctlSystemCalls : 1;                          //0x7d8
+			ULONG MitigationFlags3Spare : 29;                                 //0x7d8
+		} MitigationFlags3Values;                                           //0x7d8
+	} u3;
 	UCHAR SignatureLevel;
 	UCHAR SectionSignatureLevel;
 } KSE_SET_MITIGATION, * PKSE_SET_MITIGATION;
-
 
 #pragma pack(pop)

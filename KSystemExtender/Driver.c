@@ -9,6 +9,8 @@ UNICODE_STRING DeviceLinkName = RTL_CONSTANT_STRING(L"\\??\\KSystemExtenderL");
 UINT64 EprocessSeAuditProcessCreateInfoOffset;
 UINT64 EprocessProtectionOffset;
 UINT64 EprocessMitigationFlagsOffset;
+UINT64 EprocessMitigationFlags2Offset;
+UINT64 EprocessMitigationFlags3Offset;
 UINT64 EprocessSignatureLevelOffset;
 
 BOOLEAN KseInitializeOffsets()
@@ -22,6 +24,8 @@ BOOLEAN KseInitializeOffsets()
 		EprocessSeAuditProcessCreateInfoOffset = 0x350;
 		EprocessProtectionOffset = 0x5fa;
 		EprocessMitigationFlagsOffset = 0x750;
+		EprocessMitigationFlags2Offset = 0x754;
+		EprocessMitigationFlags3Offset = 0x7d8;
 		EprocessSignatureLevelOffset = 0x5f8;
 		break;
 	}

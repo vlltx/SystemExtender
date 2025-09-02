@@ -13,8 +13,8 @@ NTSTATUS KseDispatchCreateClose(
 
 	PEPROCESS Requestor = IoGetRequestorProcess(Irp);
 
-	PUNICODE_STRING* ProcessName = (PUNICODE_STRING*)RVA(Requestor, EprocessSeAuditProcessCreateInfoOffset);
-	if (RtlFindPattern((*ProcessName)->Buffer, (*ProcessName)->MaximumLength, SystemInformerName.Buffer, SystemInformerName.Length) == SystemInformerName.Length) {
+	PUNICODE_STRING ProcessName = *((PUNICODE_STRING*)RVA(Requestor, EprocessSeAuditProcessCreateInfoOffset));
+	if (RtlFindPattern(ProcessName->Buffer, ProcessName->Length, SystemInformerName.Buffer, SystemInformerName.Length) == NULL) {
 		Irp->IoStatus.Status = STATUS_ACCESS_DENIED;
 		return STATUS_ACCESS_DENIED;
 	}
@@ -94,7 +94,10 @@ NTSTATUS KseDispatchDeviceControl(
 
 		PUINT8 Mitigation = RVA(Process, EprocessMitigationFlagsOffset);
 		SetMitigationArgs->u1.MitigationFlags = *(PUINT32)Mitigation;
-		SetMitigationArgs->u2.MitigationFlags2 = *((PUINT32)Mitigation + 1);
+		Mitigation = RVA(Process, EprocessMitigationFlags2Offset);
+		SetMitigationArgs->u2.MitigationFlags2 = *(PUINT32)Mitigation;
+		Mitigation = RVA(Process, EprocessMitigationFlags3Offset);
+		SetMitigationArgs->u3.MitigationFlags3 = *(PUINT32)Mitigation;
 
 		SetMitigationArgs->SignatureLevel = *(PUCHAR)(RVA(Process, EprocessSignatureLevelOffset));
 		SetMitigationArgs->SectionSignatureLevel = *(PUCHAR)(RVA(Process, EprocessSignatureLevelOffset + 1));
@@ -133,5 +136,4 @@ end:
 	Irp->IoStatus.Status = Status;
 	IoCompleteRequest(Irp, 0);
 	return Status;
-
 }

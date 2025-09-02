@@ -1,11 +1,10 @@
 #include "Kse.h"
 
 PVOID RtlFindPattern(
-  _In_ PVOID Source,
-  _In_ SIZE_T
-  _In_ SourceLength,
-  _In_ PVOID Pattern,
-  _In_ SIZE_T PatternLength
+	_In_ PVOID Source,
+	_In_ SIZE_T SourceLength,
+	_In_ PVOID Pattern,
+	_In_ SIZE_T PatternLength
 )
 {
 	SIZE_T Index;
